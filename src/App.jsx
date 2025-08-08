@@ -99,6 +99,7 @@ const [search,setSearch]=useState(false);
   return (
     <>
       <div className='container'>
+        <h1>WEATHER APP</h1>
         <div className="head">
           <input type="text" value={city} onChange={changeCity}/>
           <abbr title='Double Click to Get Weather'><button onClick={changesearch} type='submit'>Search</button></abbr>
