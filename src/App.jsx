@@ -103,7 +103,9 @@ const [search,setSearch]=useState(false);
           <input type="text" value={city} onChange={changeCity}/>
           <abbr title='Double Click to Get Weather'><button onClick={changesearch} type='submit'>Search</button></abbr>
         </div>
-        {city &&  <div className="weatherimg">
+        { city && 
+          <div>
+          <div className="weatherimg">
   {image &&<img src={image} alt="weatherimage" style={{width:"150px",height:"150px"}} />}
        </div>
        
@@ -134,6 +136,8 @@ const [search,setSearch]=useState(false);
             {wind&&<h5>{wind} Km/h</h5>}
           </div>
         </div>
+
+            </div>
  }
        
 
