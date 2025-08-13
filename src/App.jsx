@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import brokenclouds from './assets/brokenclouds.jpg';
 import clearsky from './assets/clearsky.png';
 import fewclouds from './assets/fewclouds.png';
@@ -24,7 +25,6 @@ function App() {
   const [wind,setWind]=useState();
   const [image,setImg]=useState();
 const [search,setSearch]=useState(false);
-  const [notfound,setCityNotFound]=useState(false);
 
   useEffect(()=>{
     async function checkWeather()
@@ -35,13 +35,7 @@ const [search,setSearch]=useState(false);
       const url=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=metric`;
       const res=await fetch(url);
       let data=await res.json(); 
-      if(data==="404"){
-        setCityNotFound(true)
-      }
-      else{
-        setCityNotFound(False);
-        setCity(data.name);
-         setLatitude(data.coord.lat);
+      setLatitude(data.coord.lat);
       setLongitude(data.coord.lon);
       setWind(data.wind.speed);
       setCountry(data.sys.country);
@@ -82,8 +76,6 @@ const [search,setSearch]=useState(false);
       {
         setImg(mist);
       }
-      }
-     
     }
     catch(error)
     {
@@ -107,16 +99,12 @@ const [search,setSearch]=useState(false);
   return (
     <>
       <div className='container'>
-        <h1>WEATHER APP</h1>
         <div className="head">
           <input type="text" value={city} onChange={changeCity}/>
           <abbr title='Double Click to Get Weather'><button onClick={changesearch} type='submit'>Search</button></abbr>
         </div>
-        { city && 
-          <div>
-            {notfound && <p>CITY NOT FOUND</p>}
-          <div className="weatherimg">
-  {!notfound && image &&<img src={image} alt="weatherimage" style={{width:"150px",height:"150px"}} />}
+        <div className="weatherimg">
+  {image &&<img src={image} alt="weatherimage" style={{width:"150px",height:"150px"}} />}
        </div>
        
         <div className="main-content">
@@ -147,9 +135,6 @@ const [search,setSearch]=useState(false);
           </div>
         </div>
 
-            </div>
- }
-       
 
         <div className="foot">
           Designed by  <strong>Santhoshkumar</strong>
