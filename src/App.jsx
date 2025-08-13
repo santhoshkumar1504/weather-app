@@ -25,6 +25,7 @@ function App() {
   const [wind,setWind]=useState();
   const [image,setImg]=useState();
 const [search,setSearch]=useState(false);
+  const [notfound,setCityNotFound]=useState(false);
 
   useEffect(()=>{
     async function checkWeather()
@@ -35,6 +36,9 @@ const [search,setSearch]=useState(false);
       const url=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=metric`;
       const res=await fetch(url);
       let data=await res.json(); 
+      if(data==="404"){
+        setCityNotFound(true)
+      }
       setLatitude(data.coord.lat);
       setLongitude(data.coord.lon);
       setWind(data.wind.speed);
@@ -104,7 +108,7 @@ const [search,setSearch]=useState(false);
           <input type="text" value={city} onChange={changeCity}/>
           <abbr title='Double Click to Get Weather'><button onClick={changesearch} type='submit'>Search</button></abbr>
         </div>
-        { city && 
+        { notfound && city && 
           <div>
           <div className="weatherimg">
   {image &&<img src={image} alt="weatherimage" style={{width:"150px",height:"150px"}} />}
