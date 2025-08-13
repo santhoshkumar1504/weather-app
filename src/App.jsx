@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-
 import brokenclouds from './assets/brokenclouds.jpg';
 import clearsky from './assets/clearsky.png';
 import fewclouds from './assets/fewclouds.png';
