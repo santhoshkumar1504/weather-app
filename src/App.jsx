@@ -111,10 +111,11 @@ const [search,setSearch]=useState(false);
           <input type="text" value={city} onChange={changeCity}/>
           <abbr title='Double Click to Get Weather'><button onClick={changesearch} type='submit'>Search</button></abbr>
         </div>
-        { notfound && city && 
+        { city && 
           <div>
+            {notfound && <p>CITY NOT FOUND</p>}
           <div className="weatherimg">
-  {image &&<img src={image} alt="weatherimage" style={{width:"150px",height:"150px"}} />}
+  {!notfound && image &&<img src={image} alt="weatherimage" style={{width:"150px",height:"150px"}} />}
        </div>
        
         <div className="main-content">
