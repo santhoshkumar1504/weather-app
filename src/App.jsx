@@ -39,6 +39,9 @@ const [search,setSearch]=useState(false);
       if(data==="404"){
         setCityNotFound(true)
       }
+      else{
+        setCityNotFound(False)
+      }
       setLatitude(data.coord.lat);
       setLongitude(data.coord.lon);
       setWind(data.wind.speed);
