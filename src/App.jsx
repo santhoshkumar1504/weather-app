@@ -40,9 +40,9 @@ const [search,setSearch]=useState(false);
         setCityNotFound(true)
       }
       else{
-        setCityNotFound(False)
-      }
-      setLatitude(data.coord.lat);
+        setCityNotFound(False);
+        setCity(data.name);
+         setLatitude(data.coord.lat);
       setLongitude(data.coord.lon);
       setWind(data.wind.speed);
       setCountry(data.sys.country);
@@ -83,6 +83,8 @@ const [search,setSearch]=useState(false);
       {
         setImg(mist);
       }
+      }
+     
     }
     catch(error)
     {
